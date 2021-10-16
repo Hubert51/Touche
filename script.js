@@ -15,7 +15,7 @@ var isDrawerOpen = false,
   dawerProgress,
   isKorean = false,
   // baseUrl = "https://abdulmoqueet.github.io/music-player/",
-  baseUrl = "https://ruiyiw.github.io/Touche",
+  baseUrl = "https://ruiyi.github.io/Touche",
   accentColorAr = [
     "#ff4b66",
     "#62ff6e",
