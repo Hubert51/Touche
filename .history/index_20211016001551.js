@@ -81,7 +81,7 @@ function setProgress(e) {
 }
 
 // Event listeners
-playBtn.addEventListener(test_trigger == 1, () => {
+playBtn.addEventListener('click', () => {
     const isPlaying = musicContainer.classList.contains('play');
     if(isPlaying) {
         pauseSong();

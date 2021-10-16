@@ -77,11 +77,11 @@ function setProgress(e) {
     const clickX = e.offsetX;
     const duration = audio.duration;
 
-    audio.currentTime = clickX / width * duration;
+    audio.currentTime = claickX / width * duration;
 }
 
 // Event listeners
-playBtn.addEventListener(test_trigger == 1, () => {
+playBtn.addEventListener('click', () => {
     const isPlaying = musicContainer.classList.contains('play');
     if(isPlaying) {
         pauseSong();

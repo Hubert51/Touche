@@ -1,3 +1,15 @@
+// Initialize Cloud Firestore through Firebase
+import { initializeApp } from "firebase/app"
+import { getFirestore } from "firebase/firestore"
+const firebaseApp = initializeApp({
+  apiKey: '### FIREBASE API KEY ###',
+  authDomain: '### FIREBASE AUTH DOMAIN ###',
+  projectId: '### CLOUD FIRESTORE PROJECT ID ###'
+});
+
+const db = getFirestore();
+
+
 const musicContainer = document.getElementById('music-container');
 const playBtn = document.getElementById('play');
 const prevBtn = document.getElementById('prev');
@@ -14,8 +26,6 @@ const songs = ['hey', 'summer', 'ukulele'];
 
 // Keep track of song
 let songIndex = 2;
-
-let test_trigger = 1;
 
 // Initially load song details into DOM
 loadSong(songs[songIndex]);
@@ -81,7 +91,7 @@ function setProgress(e) {
 }
 
 // Event listeners
-playBtn.addEventListener(test_trigger == 1, () => {
+playBtn.addEventListener('click', () => {
     const isPlaying = musicContainer.classList.contains('play');
     if(isPlaying) {
         pauseSong();

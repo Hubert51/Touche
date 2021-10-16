@@ -15,8 +15,6 @@ const songs = ['hey', 'summer', 'ukulele'];
 // Keep track of song
 let songIndex = 2;
 
-let test_trigger = 1;
-
 // Initially load song details into DOM
 loadSong(songs[songIndex]);
 
@@ -81,7 +79,7 @@ function setProgress(e) {
 }
 
 // Event listeners
-playBtn.addEventListener(test_trigger == 1, () => {
+playBtn.addEventListener('click', () => {
     const isPlaying = musicContainer.classList.contains('play');
     if(isPlaying) {
         pauseSong();
