@@ -46,6 +46,7 @@
     
         const db = getFirestore();
     
+    
         const querySnapshot = await getDocs(collection(db, "touche_data"));
         querySnapshot.forEach((doc) => {
             console.log(`${doc.id} => ${doc.data()}`);
