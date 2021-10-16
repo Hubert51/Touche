@@ -23,13 +23,9 @@ loadSong(songs[songIndex]);
 
 // While loop
 function updateData() {
-    if (trigger == 1) {
-        const isPlaying = musicContainer.classList.contains('play');
-        if(isPlaying) {
-            pauseSong();
-        } else {
-            playSong();
-        }
+    while (1) {
+
+
     }
 }
 
@@ -96,17 +92,13 @@ function setProgress(e) {
 }
 
 // Event listeners
-// playBtn.addEventListener('click', () => {
-//     const isPlaying = musicContainer.classList.contains('play');
-//     if(isPlaying) {
-//         pauseSong();
-//     } else {
-//         playSong();
-//     }
-// });
-
 playBtn.addEventListener('click', () => {
-    updateData();
+    const isPlaying = musicContainer.classList.contains('play');
+    if(isPlaying) {
+        pauseSong();
+    } else {
+        playSong();
+    }
 });
 
 //change songs

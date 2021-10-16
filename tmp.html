@@ -1,0 +1,81 @@
+<!DOCTYPE HTML>
+<html>
+  <body>
+      <p>Music app</p>
+<!--      <audio id="audio2"-->
+<!--         preload="auto"-->
+<!--         src="static/music/hello.mp3" >-->
+
+<!--         <p>Your browser does not support the audio element</p>-->
+<!--      </audio>-->
+
+<!--      <script>-->
+<!--        myAudio=document.getElementById('audio2');-->
+<!--        myAudio.addEventListener('canplaythrough', function() {-->
+<!--          this.currentTime = 12;-->
+<!--          this.play();-->
+<!--        });-->
+<!--      </script>-->
+
+<!--    <audio src="static/music/hello.mp3#t=00:03:26" autoplay controls >-->
+<!--    <p>Fallback content goes here.</p>-->
+<!--    </audio>-->
+
+      <audio id="audio" controls autoplay muted>
+        <source src="static/music/hello.mp3#t=00:03:26" type="audio/ogg">
+<!--        <source src="horse.mp3" type="audio/mpeg">-->
+      Your browser does not support the audio element.
+      </audio>
+
+      <input type="button" value="PLAY" onclick="play()">
+
+      <script>
+      function play() {
+        var audio = document.getElementById("audio");
+        audio.play();
+      }
+    </script>
+
+<!--<iframe src="static/music/hello.mp3" allow="autoplay" style="display:none" id="iframeAudio">-->
+<!--</iframe>-->
+    <!--    https://www.sitepoint.com/javascript-truthy-falsy/-->
+      <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script type="module">
+      // import { initializeApp } from "firebase/app"
+      // import { getFirestore } from "firebase/firestore"
+      // const firebaseApp = initializeApp({
+      //   apiKey: 'MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDibk8dZ6JC5/Ko\nBo0DJ+RZWHH7nHZUnL7XDjjl3JTteDdE2szBzC+1QXGxk5DEP5xbDogPqITm7N4W\nCqLDfLyDoTRuLrbtz93I65qKKGv11fmzK/HkrqdD4WzaA1vtlA378/Y8fel2SVKx\nst3dKKKLHHp/3AXbZfPTctcYczBcs8qNw6I212YIplvVcRqSQfRJtZ5uRZEiFOFp\n7ysVgGdNfY5Epf6YOgBUJSR8EYIhVFamb3/D4jq1/+JWGukhg/Oq2bKqfXYcT30H\npBn12ITeErshMj2FVI8hnId6ahlZprX1fBSg2zLDK3jxuIQjP4q8cduIDrKutsR8\ncAa/OXyBAgMBAAECggEACuZR9yGluTBGqUl1cMUzFAzyobDIrm6ELkCAQypg3eSH\nTpB0wlB0rHY7xZdLpPLF8UksCgrr6NzWnPuClcPzpCd2qWYkxqJWtAUJYaSr+7/C\n3xnasU4p/ZXEomL+ght6J9p4zDUob5n8edLZJLv/xRAIIo8CFitcdx2EVqg22AN1\naA5rWkfhmttsHMHF7ViIVRC3jYytt4dha0/Aj09Gf8pOpMtyl06Q14x4E+l8Q8J2\nR/YzSifAJ1guYUIWG7aAJm/k8qVKanw6zkKqDQFNQel2QxwXVPKXZXiJQBMGjTZY\n5mnAt7BeWICMiaXC6HVXYqwTAcgfWqbEoyMrE0RFRQKBgQD4btZJg3B+HYgjJPBc\nqgABmSXSa679KGTuc3ZVa/PE+vSHI6RKPZVxtZ/pXGl/J1X7QnlTdXsQZnLZ7chB\n0KTTnfFik09BkU5tip51z+fyFUdv49P1m0vevJozeb9b7yfaYTYjUTFgh0WbcxpX\nqAYwf8oJpGb4pdkJkn0kORLGTQKBgQDpU+kIY51yQWqLCiO7XJsnu17gLIXMqQoB\nt04ZwqMl0QojiuWOPBP7FXUXtmHyXKu5q3Q8TdTploHq74RtmIQWvmn5vxNXJniL\n/Vv09RSkdQg4tkUHTCCPHnolDMF91oLTKMfuJrJ7HMQf+qCk7UwR1P4v1ERpVN8B\nS/M7lrKRBQKBgQDIKHTZ8d52ndCLkD1gS0+J+hvw9vWb3inDvJ9An6Ndt1vAbcT2\nU7vOS6k1WVFeMxEhSSN7TJIEWqZ6UwwfirziCsTqyQj4KNxpgV++R+32q5JM4eBq\nZ96u7IHIq3Sz23HejqgRuF7yCMraPdiheyzRcoQTVLPp7aV6At50is9HmQKBgQCP\ny3OxBNsyX9hOaehNfqvsF5BH7Yhj8cVF+3b5bzdmheaOsvn351SVB8tK2s6QM8Zt\nPZn71Cej8WqNpCDj/fthnOXo0XYU3pOqCnFSjHu1Qp7XfJUcAzGJokm6bZsNd1bW\n1aopPdX/A2JnJuk72zZnQvGH/nROycxJm0oCbkQMFQKBgFSRt88+Y9DRSNsiZz6g\nGNFnnJe+BH9GuZgGYdgzReXz6N3bp7+14EXtGJGgggZMDOnEf3NHVRjaaHgBgXpE\nbnZehIjhe9Tg/xuX4RXz+PQs3VaxJM//sX4pFxuMfHx2CvkpOvnkITYgq6bQ0+pS\n6vb0TnXx0WvV5qK6ouK2qC32',
+      //   authDomain: '### FIREBASE AUTH DOMAIN ###',
+      //   projectId: '### CLOUD FIRESTORE PROJECT ID ###'
+      // });
+
+      // const db = getFirestore();
+
+      import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.1.3/firebase-app.js'
+
+        // If you enabled Analytics in your project, add the Firebase SDK for Google Analytics
+        // Add Firebase products that you want to use
+        import { firestore } from 'https://www.gstatic.com/firebasejs/9.1.3/firebase-firestore.js'
+
+      // import { collection, getDocs } from "firebase/firestore";
+        const firebase = require("firebase");
+        // Required for side-effects
+        require("firebase/firestore");
+      var admin = require("firebase-admin");
+      var serviceAccount = require("k.json");
+      admin.initializeApp({
+        credential: admin.credential.cert(serviceAccount)
+      });
+
+      const db = getFirestore();
+
+
+    const querySnapshot = await getDocs(collection(db, "touche_data"));
+    querySnapshot.forEach((doc) => {
+        console.log(`${doc.id} => ${doc.data()}`);
+    });
+
+    </script>
+  </body>
+</html>

@@ -106,7 +106,7 @@ function setProgress(e) {
 // });
 
 playBtn.addEventListener('click', () => {
-    updateData();
+
 });
 
 //change songs

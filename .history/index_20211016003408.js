@@ -24,12 +24,7 @@ loadSong(songs[songIndex]);
 // While loop
 function updateData() {
     if (trigger == 1) {
-        const isPlaying = musicContainer.classList.contains('play');
-        if(isPlaying) {
-            pauseSong();
-        } else {
-            playSong();
-        }
+        
     }
 }
 
@@ -104,10 +99,6 @@ function setProgress(e) {
 //         playSong();
 //     }
 // });
-
-playBtn.addEventListener('click', () => {
-    updateData();
-});
 
 //change songs
 prevBtn.addEventListener('click', prevSong)

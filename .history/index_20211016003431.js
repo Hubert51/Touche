@@ -105,10 +105,6 @@ function setProgress(e) {
 //     }
 // });
 
-playBtn.addEventListener('click', () => {
-    updateData();
-});
-
 //change songs
 prevBtn.addEventListener('click', prevSong)
 nextBtn.addEventListener('click', nextSong)
