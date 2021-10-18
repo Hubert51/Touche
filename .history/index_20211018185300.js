@@ -188,7 +188,7 @@ pauseSong();
 
 while (true){
     const querySnapshot = await getDocs(collection(db, "touche_data"));
-    //var device_id = 0;
+    var device_id = 0;
     querySnapshot.forEach((doc) => {
         device_id = doc.data().device_id;
         console.log(`${doc.id} => ${device_id}`);

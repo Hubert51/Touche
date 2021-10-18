@@ -184,19 +184,18 @@ audio.addEventListener('ended', nextSong);
 
 device_id = findBrowser();
 console.log(device_id);
-pauseSong();
-
-while (true){
-    const querySnapshot = await getDocs(collection(db, "touche_data"));
-    //var device_id = 0;
-    querySnapshot.forEach((doc) => {
-        device_id = doc.data().device_id;
-        console.log(`${doc.id} => ${device_id}`);
-    });
-    if (device_id==2){
-        playSong();
-    }else{
-        pauseSong();
-    }
-    await new Promise(r => setTimeout(r, 2000));
-}
+// pauseSong();
+// while (true){
+//       const querySnapshot = await getDocs(collection(db, "touche_data"));
+//       var device_id = 0;
+//       querySnapshot.forEach((doc) => {
+//           device_id = doc.data().device_id;
+//           console.log(`${doc.id} => ${device_id}`);
+//       });
+//       if (device_id==2){
+//           playSong();
+//       }else{
+//           pauseSong();
+//       }
+//       await new Promise(r => setTimeout(r, 2000));
+// }
