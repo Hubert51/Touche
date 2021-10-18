@@ -132,6 +132,13 @@ function findBrowser() {
     console.log(output);
 }
 
+
+
+
+
+
+
+
 // Event listeners
 playBtn.addEventListener('click', () => {
     const isPlaying = musicContainer.classList.contains('play');

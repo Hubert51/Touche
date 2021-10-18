@@ -129,8 +129,15 @@ function findBrowser() {
     output += 'isEdge: ' + isEdge + '<br>';
     output += 'isEdgeChromium: ' + isEdgeChromium + '<br>';
     output += 'isBlink: ' + isBlink + '<br>';
-    console.log(output);
+    document.body.innerHTML = output;
 }
+
+
+
+
+
+
+
 
 // Event listeners
 playBtn.addEventListener('click', () => {
