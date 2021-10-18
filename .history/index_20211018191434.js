@@ -195,10 +195,9 @@ pauseSong();
 while (true){
     const querySnapshot = await getDocs(collection(db, "touche_data"));
     var device_id_quiry = device_id;
-    var timestamp_quiry = 0;
     querySnapshot.forEach((doc) => {
         device_id_quiry = doc.data().device_id;
-        timestamp_quiry = doc.data().timestamp;
+        imestamp_quiry = doc.data().timestamp;
         //updateTimestamp(timestamp_quiry);
         console.log(`${doc.id} => ${device_id_quiry}`);
         console.log(`${doc.id} => ${timestamp_quiry}`);
