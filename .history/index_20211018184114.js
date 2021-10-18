@@ -134,9 +134,9 @@ function findBrowser() {
     if (isEdgeChromium) {
         return device_dict["lenovo"];
     } else if (!isEdgeChromium && isChrome) {
-        return device_dict["surface"];
+        return device_id["surface"];
     } else {
-        return device_dict["iphone"];
+        return device_id["iphone"];
     }
 
 }
@@ -170,8 +170,7 @@ progressContainer.addEventListener('click', setProgress);
 audio.addEventListener('ended', nextSong);
 
 
-device_id = findBrowser();
-console.log(device_id);
+findBrowser();
 pauseSong();
 while (true){
       const querySnapshot = await getDocs(collection(db, "touche_data"));

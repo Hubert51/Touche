@@ -32,7 +32,7 @@ const title = document.getElementById('title');
 const cover = document.getElementById('cover');
 
 // Device Mapping
-const device_dict = {
+const device_id = {
     "lenovo": 1,
     "iphone": 2,
     "surface": 3,
@@ -46,9 +46,6 @@ let songIndex = 2;
 
 // Initially load song details into DOM
 loadSong(songs[songIndex]);
-
-// Initialize devices
-let device_id = device_dict["lenovo"];
 
 
 // Update song details
@@ -132,12 +129,8 @@ function findBrowser() {
     var isBlink = (isChrome || isOpera) && !!window.CSS;
 
     if (isEdgeChromium) {
-        return device_dict["lenovo"];
-    } else if (!isEdgeChromium && isChrome) {
-        return device_dict["surface"];
-    } else {
-        return device_dict["iphone"];
-    }
+        return device_id["lenovo"];
+    } else if (!isEdgeChromium && )
 
 }
 
@@ -170,8 +163,7 @@ progressContainer.addEventListener('click', setProgress);
 audio.addEventListener('ended', nextSong);
 
 
-device_id = findBrowser();
-console.log(device_id);
+findBrowser();
 pauseSong();
 while (true){
       const querySnapshot = await getDocs(collection(db, "touche_data"));

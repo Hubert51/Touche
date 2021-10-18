@@ -31,13 +31,6 @@ const progressContainer = document.getElementById('progress-container');
 const title = document.getElementById('title');
 const cover = document.getElementById('cover');
 
-// Device Mapping
-const device_dict = {
-    "lenovo": 1,
-    "iphone": 2,
-    "surface": 3,
-};
-
 // Song titles
 const songs = ['hey', 'summer', 'ukulele'];
 
@@ -46,9 +39,6 @@ let songIndex = 2;
 
 // Initially load song details into DOM
 loadSong(songs[songIndex]);
-
-// Initialize devices
-let device_id = device_dict["lenovo"];
 
 
 // Update song details
@@ -112,7 +102,6 @@ function setProgress(e) {
 }
 
 // Find browser type
-
 function findBrowser() {
     // Opera 8.0+
     var isOpera = (!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
@@ -130,14 +119,6 @@ function findBrowser() {
     var isEdgeChromium = isChrome && (navigator.userAgent.indexOf("Edg") != -1);
     // Blink engine detection
     var isBlink = (isChrome || isOpera) && !!window.CSS;
-
-    if (isEdgeChromium) {
-        return device_dict["lenovo"];
-    } else if (!isEdgeChromium && isChrome) {
-        return device_dict["surface"];
-    } else {
-        return device_dict["iphone"];
-    }
 
 }
 
@@ -170,8 +151,7 @@ progressContainer.addEventListener('click', setProgress);
 audio.addEventListener('ended', nextSong);
 
 
-device_id = findBrowser();
-console.log(device_id);
+findBrowser();
 pauseSong();
 while (true){
       const querySnapshot = await getDocs(collection(db, "touche_data"));

@@ -170,8 +170,7 @@ progressContainer.addEventListener('click', setProgress);
 audio.addEventListener('ended', nextSong);
 
 
-device_id = findBrowser();
-console.log(device_id);
+findBrowser();
 pauseSong();
 while (true){
       const querySnapshot = await getDocs(collection(db, "touche_data"));

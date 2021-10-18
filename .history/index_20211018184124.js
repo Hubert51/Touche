@@ -171,7 +171,6 @@ audio.addEventListener('ended', nextSong);
 
 
 device_id = findBrowser();
-console.log(device_id);
 pauseSong();
 while (true){
       const querySnapshot = await getDocs(collection(db, "touche_data"));
