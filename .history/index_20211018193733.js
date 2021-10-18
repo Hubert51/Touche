@@ -1,8 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.3/firebase-app.js";
 //import { firestore } from 'https://www.gstatic.com/firebasejs/9.1.3/firebase-firestore.js'
-// import {  getFirestore, collection, getDocs  } from 'https://www.gstatic.com/firebasejs/9.1.3/firebase-firestore.js'
-import {  getFirestore, collection, getDocs, updateDoc , doc  } from 'https://www.gstatic.com/firebasejs/9.1.3/firebase-firestore.js'
+import {  getFirestore, collection, getDocs  } from 'https://www.gstatic.com/firebasejs/9.1.3/firebase-firestore.js'
 //import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -15,13 +14,6 @@ const firebaseConfig = {
   storageBucket: "touche-1c021.appspot.com",
   messagingSenderId: "166127349399",
   appId: "1:166127349399:web:3ff697a006ca3cfdc2c3d2"
-};
-
-// Device Mapping
-const device_dict = {
-    "lenovo": 1,
-    "iphone": 2,
-    "surface": 3,
 };
 
 // Initialize Firebase
@@ -39,17 +31,24 @@ const progressContainer = document.getElementById('progress-container');
 const title = document.getElementById('title');
 const cover = document.getElementById('cover');
 
+// Device Mapping
+const device_dict = {
+    "lenovo": 1,
+    "iphone": 2,
+    "surface": 3,
+};
+
 // Song titles
 const songs = ['hey', 'summer', 'ukulele'];
 
 // Keep track of song
 let songIndex = 2;
-var playing = 0;
-var firstPause = 1;
-let cur_id;
 
 // Initially load song details into DOM
 loadSong(songs[songIndex]);
+
+// Initialize devices
+let device_id = device_dict["lenovo"];
 
 
 // Update song details
@@ -60,31 +59,11 @@ function loadSong(song) {
 }
 
 // play song
-function playSong(timestamp) {
+function playSong() {
     musicContainer.classList.add('play');
     playBtn.querySelector('i.fas').classList.remove('fa-play');
     playBtn.querySelector('i.fas').classList.add('fa-pause');
-    if (playing === 0){
-        playing = 1;
-        audio.currentTime = timestamp;
-    }
     audio.play();
-    firstPause = 1;
-
-    updateDoc (doc(db, "touche_data", "lJkUHbTaA7x5zyxnQCap"), {
-        timestamp: -1
-    });
-
-
-    // console.log(Math.round(1000*audio.currentTime));
-    // var timestamp = Math.round(1000*audio.currentTime);
-    // var time_str = timestamp.toString().padStart(7, "0");
-    // console.log(time_str/1000)
-    // var minutes = Math.floor(timestamp / 60000);
-    // var seconds = timestamp - minutes * 60000;
-    // var ms =
-
-
 }
 
 // pause song
@@ -93,12 +72,6 @@ function pauseSong() {
     playBtn.querySelector('i.fas').classList.add('fa-play');
     playBtn.querySelector('i.fas').classList.remove('fa-pause');
     audio.pause();
-    if (firstPause === 1) {
-        updateDoc(doc(db, "touche_data", "lJkUHbTaA7x5zyxnQCap"), {
-            timestamp: audio.currentTime
-        });
-        firstPause = 0;
-    }
 }
 
 // previous song
@@ -145,7 +118,7 @@ function findBrowser() {
     var isOpera = (!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
     // Firefox 1.0+
     var isFirefox = typeof InstallTrigger !== 'undefined';
-    // Safari 3.0+ "[object HTMLElementConstructor]"
+    // Safari 3.0+ "[object HTMLElementConstructor]" 
     var isSafari = /constructor/i.test(window.HTMLElement) || (function (p) { return p.toString() === "[object SafariRemoteNotification]"; })(!window['safari'] || (typeof safari !== 'undefined' && window['safari'].pushNotification));
     // Internet Explorer 6-11
     var isIE = /*@cc_on!@*/false || !!document.documentMode;
@@ -176,7 +149,15 @@ function findBrowser() {
     } else {
         return device_dict["iphone"];
     }
+
 }
+
+function updateTimestamp (timestamp){
+    updateDoc (doc(db, "touche_data", "lJkUHbTaA7x5zyxnQCap"),{
+        timestamp: timestamp
+  });
+}
+
 
 // Event listeners
 playBtn.addEventListener('click', () => {
@@ -184,9 +165,6 @@ playBtn.addEventListener('click', () => {
     if(isPlaying) {
         pauseSong();
     } else {
-        updateDoc(doc(db, "touche_data", "lJkUHbTaA7x5zyxnQCap"), {
-            device_id: 2
-        });
         playSong();
     }
 });
@@ -210,26 +188,28 @@ progressContainer.addEventListener('click', setProgress);
 audio.addEventListener('ended', nextSong);
 
 
+device_id = findBrowser();
+console.log(device_id);
 pauseSong();
-cur_id = findBrowser();
-console.log(cur_id);
-var firstPlay = 1;
-while (true){
-      const querySnapshot = await getDocs(collection(db, "touche_data"));
-      var device_id = 0;
-      var timestamp = -1;
-      querySnapshot.forEach((doc) => {
-          device_id = doc.data().device_id;
-          console.log(`${doc.id} => ${device_id}`);
-          timestamp = doc.data().timestamp;
-      });
 
-      if (device_id===cur_id && firstPlay === 1){
-          playSong(timestamp);
-          firstPlay = 0;
-      }else if (device_id !== cur_id){
-          pauseSong();
-          firstPlay = 1;
-      }
-      await new Promise(r => setTimeout(r, 2000));
+while (true){
+    var currentTime = audio.currentTime;
+    const querySnapshot = await getDocs(collection(db, "touche_data"));
+    var device_id_quiry = device_id;
+    var timestamp_quiry = 0;
+    querySnapshot.forEach((doc) => {
+        device_id_quiry = doc.data().device_id;
+        timestamp_quiry = doc.data().timestamp;
+        //updateTimestamp(timestamp_quiry);
+        console.log(`${doc.id} => ${device_id_quiry}`);
+        console.log(`${doc.id} => ${timestamp_quiry}`);
+    });
+    if (device_id == device_id_quiry){
+        playSong();
+        updateTime(currentTime);
+    }else{
+        pauseSong();
+        
+    }
+    await new Promise(r => setTimeout(r, 1000));
 }
