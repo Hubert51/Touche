@@ -104,14 +104,14 @@ function setProgress(e) {
 }
 
 // Event listeners
-playBtn.addEventListener('click', () => {
-    const isPlaying = musicContainer.classList.contains('play');
-    if(isPlaying) {
-        pauseSong();
-    } else {
-        playSong();
-    }
-});
+// playBtn.addEventListener('click', () => {
+//     const isPlaying = musicContainer.classList.contains('play');
+//     if(isPlaying) {
+//         pauseSong();
+//     } else {
+//         playSong();
+//     }
+// });
 
 playBtn.addEventListener('click', () => {
     updateData();
@@ -130,20 +130,3 @@ progressContainer.addEventListener('click', setProgress);
 
 // song ends
 audio.addEventListener('ended', nextSong);
-
-
-stop()
-while (true){
-      const querySnapshot = await getDocs(collection(db, "touche_data"));
-      var device_id = 0
-      querySnapshot.forEach((doc) => {
-          device_id = doc.data().device_id
-          console.log(`${doc.id} => ${device_id}`);
-      });
-      if (device_id==2){
-          play()
-      }else{
-          stop()
-      }
-      await new Promise(r => setTimeout(r, 2000));
-}
