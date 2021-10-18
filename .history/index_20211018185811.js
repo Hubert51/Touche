@@ -193,7 +193,7 @@ while (true){
         device_id_quiry = doc.data().device_id;
         console.log(`${doc.id} => ${device_id_quiry}`);
     });
-    if (device_id == device_id_quiry){
+    if (device_id == 2){
         playSong();
     }else{
         pauseSong();

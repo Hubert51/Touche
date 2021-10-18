@@ -188,12 +188,12 @@ pauseSong();
 
 while (true){
     const querySnapshot = await getDocs(collection(db, "touche_data"));
-    var device_id_quiry = device_id;
+    var device_id_quiry = device;
     querySnapshot.forEach((doc) => {
-        device_id_quiry = doc.data().device_id;
-        console.log(`${doc.id} => ${device_id_quiry}`);
+        device_id = doc.data().device_id;
+        console.log(`${doc.id} => ${device_id}`);
     });
-    if (device_id == device_id_quiry){
+    if (device_id == 2){
         playSong();
     }else{
         pauseSong();
