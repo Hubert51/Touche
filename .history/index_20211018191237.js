@@ -193,14 +193,15 @@ console.log(device_id);
 pauseSong();
 
 while (true){
+    updateTimestamp()
     const querySnapshot = await getDocs(collection(db, "touche_data"));
     var device_id_quiry = device_id;
     querySnapshot.forEach((doc) => {
         device_id_quiry = doc.data().device_id;
         timestamp_quiry = doc.data().timestamp;
-        //updateTimestamp(timestamp_quiry);
         console.log(`${doc.id} => ${device_id_quiry}`);
         console.log(`${doc.id} => ${timestamp_quiry}`);
+        updateTimestamp(timestamp_quiry);
     });
     if (device_id == 2){
         playSong();
