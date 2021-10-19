@@ -40,10 +40,10 @@ const title = document.getElementById('title');
 const cover = document.getElementById('cover');
 
 // Song titles
-const songs = ['hey', 'summer', 'ukulele', 'Give_Your_Heart_a_Break', 'Faded', 'Legends_Never_Die', 'Alone_Part_II', 'Heart_Attack', 'Ignite', 'Keep_Holding_On', 'Lily', 'Wish_You_Were_Here'];
+const songs = ['hey', 'summer', 'ukulele'];
 
 // Keep track of song
-let songIndex = 0;
+let songIndex = 2;
 var playing = 0;
 var forcePause = 0;
 var firstPause = 1;
