@@ -45,7 +45,7 @@ const songs = ['hey', 'summer', 'ukulele'];
 // Keep track of song
 let songIndex = 2;
 var playing = 0;
-var forcePause = 0;
+var stopping = 0;
 var firstPause = 1;
 let cur_id;
 
@@ -64,7 +64,7 @@ function playSongAtCurr(timestamp) {
     musicContainer.classList.add('play');
     playBtn.querySelector('i.fas').classList.remove('fa-play');
     playBtn.querySelector('i.fas').classList.add('fa-pause');
-    if (playing === 0){
+    if (playing == 0){
         audio.currentTime = timestamp;
     }
     audio.play();
@@ -182,13 +182,11 @@ playBtn.addEventListener('click', () => {
     const isPlaying = musicContainer.classList.contains('play');
     if(isPlaying) {
         pauseSong();
-        forcePause = 1;
     } else {
         // updateDoc(doc(db, "touche_data", "lJkUHbTaA7x5zyxnQCap"), {
         //     device_id: 2
         // });
         playSong();
-        forcePause = 0;
     }
 });
 
@@ -225,8 +223,8 @@ while (true){
           timestamp = doc.data().timestamp;
       });
 
-      if (device_id === cur_id && forcePause === 0){
-          if (playing === 0) {
+      if (device_id===cur_id){
+          if (playing == 0) {
               playSongAtCurr(timestamp);
               playing = 1;
           } else {

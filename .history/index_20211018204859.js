@@ -188,7 +188,6 @@ playBtn.addEventListener('click', () => {
         //     device_id: 2
         // });
         playSong();
-        forcePause = 0;
     }
 });
 
@@ -225,8 +224,8 @@ while (true){
           timestamp = doc.data().timestamp;
       });
 
-      if (device_id === cur_id && forcePause === 0){
-          if (playing === 0) {
+      if (device_id===cur_id && forcePause === 0){
+          if (playing == 0) {
               playSongAtCurr(timestamp);
               playing = 1;
           } else {

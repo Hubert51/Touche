@@ -188,7 +188,6 @@ playBtn.addEventListener('click', () => {
         //     device_id: 2
         // });
         playSong();
-        forcePause = 0;
     }
 });
 

@@ -64,7 +64,7 @@ function playSongAtCurr(timestamp) {
     musicContainer.classList.add('play');
     playBtn.querySelector('i.fas').classList.remove('fa-play');
     playBtn.querySelector('i.fas').classList.add('fa-pause');
-    if (playing === 0){
+    if (playing == 0){
         audio.currentTime = timestamp;
     }
     audio.play();
@@ -188,7 +188,6 @@ playBtn.addEventListener('click', () => {
         //     device_id: 2
         // });
         playSong();
-        forcePause = 0;
     }
 });
 
@@ -225,8 +224,8 @@ while (true){
           timestamp = doc.data().timestamp;
       });
 
-      if (device_id === cur_id && forcePause === 0){
-          if (playing === 0) {
+      if (device_id===cur_id && forcePause == 1){
+          if (playing == 0) {
               playSongAtCurr(timestamp);
               playing = 1;
           } else {
