@@ -71,11 +71,6 @@ function playSongAtCurr(timestamp) {
     //console.log(audio.currentTime);
 }
 
-function updateTimestamp (timestamp){
-    updateDoc (doc(db, "touche_data", "lJkUHbTaA7x5zyxnQCap"),{
-        timestamp: timestamp
-  });
-}
 
 // play song
 // play song
@@ -223,9 +218,8 @@ while (true){
           timestamp = doc.data().timestamp;
       });
 
-      if (device_id===cur_id){
+      if (device_id===cur_id && firstPlay === 1){
           playSongAtCurr(timestamp);
-          updateTimestamp(timestamp);
           //firstPlay = 0;
       }else if (device_id !== cur_id){
           pauseSong();

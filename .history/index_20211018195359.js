@@ -59,7 +59,8 @@ function loadSong(song) {
     cover.src = `images/${song}.jpg`;
 }
 
-function playSongAtCurr(timestamp) {
+// play song
+function playSong(timestamp) {
     musicContainer.classList.add('play');
     playBtn.querySelector('i.fas').classList.remove('fa-play');
     playBtn.querySelector('i.fas').classList.add('fa-pause');
@@ -68,22 +69,22 @@ function playSongAtCurr(timestamp) {
         audio.currentTime = timestamp;
     }
     audio.play();
-    //console.log(audio.currentTime);
-}
+    //firstPause = 1;
 
-function updateTimestamp (timestamp){
-    updateDoc (doc(db, "touche_data", "lJkUHbTaA7x5zyxnQCap"),{
-        timestamp: timestamp
-  });
-}
+    updateDoc (doc(db, "touche_data", "lJkUHbTaA7x5zyxnQCap"), {
+        timestamp: -1
+    });
 
-// play song
-// play song
-function playSong() {
-    musicContainer.classList.add('play');
-    playBtn.querySelector('i.fas').classList.remove('fa-play');
-    playBtn.querySelector('i.fas').classList.add('fa-pause');
-    audio.play();
+
+    // console.log(Math.round(1000*audio.currentTime));
+    // var timestamp = Math.round(1000*audio.currentTime);
+    // var time_str = timestamp.toString().padStart(7, "0");
+    // console.log(time_str/1000)
+    // var minutes = Math.floor(timestamp / 60000);
+    // var seconds = timestamp - minutes * 60000;
+    // var ms =
+
+
 }
 
 // pause song
@@ -92,12 +93,12 @@ function pauseSong() {
     playBtn.querySelector('i.fas').classList.add('fa-play');
     playBtn.querySelector('i.fas').classList.remove('fa-pause');
     audio.pause();
-    // if (firstPause === 1) {
-    //     updateDoc(doc(db, "touche_data", "lJkUHbTaA7x5zyxnQCap"), {
-    //         timestamp: audio.currentTime
-    //     });
-    //     firstPause = 0;
-    // }
+    if (firstPause === 1) {
+        updateDoc(doc(db, "touche_data", "lJkUHbTaA7x5zyxnQCap"), {
+            timestamp: audio.currentTime
+        });
+        firstPause = 0;
+    }
 }
 
 // previous song
@@ -183,9 +184,9 @@ playBtn.addEventListener('click', () => {
     if(isPlaying) {
         pauseSong();
     } else {
-        // updateDoc(doc(db, "touche_data", "lJkUHbTaA7x5zyxnQCap"), {
-        //     device_id: 2
-        // });
+        updateDoc(doc(db, "touche_data", "lJkUHbTaA7x5zyxnQCap"), {
+            device_id: 2
+        });
         playSong();
     }
 });
@@ -224,8 +225,7 @@ while (true){
       });
 
       if (device_id===cur_id){
-          playSongAtCurr(timestamp);
-          updateTimestamp(timestamp);
+          playSong(timestamp);
           //firstPlay = 0;
       }else if (device_id !== cur_id){
           pauseSong();

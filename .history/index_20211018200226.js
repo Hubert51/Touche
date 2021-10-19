@@ -71,11 +71,6 @@ function playSongAtCurr(timestamp) {
     //console.log(audio.currentTime);
 }
 
-function updateTimestamp (timestamp){
-    updateDoc (doc(db, "touche_data", "lJkUHbTaA7x5zyxnQCap"),{
-        timestamp: timestamp
-  });
-}
 
 // play song
 // play song
@@ -212,7 +207,7 @@ audio.addEventListener('ended', nextSong);
 pauseSong();
 cur_id = findBrowser();
 console.log(cur_id);
-//var firstPlay = 1;
+var firstPlay = 1;
 while (true){
       const querySnapshot = await getDocs(collection(db, "touche_data"));
       var device_id = 0;
@@ -220,16 +215,16 @@ while (true){
       querySnapshot.forEach((doc) => {
           device_id = doc.data().device_id;
           console.log(`${doc.id} => ${device_id}`);
+          console.log(cur_id);
           timestamp = doc.data().timestamp;
       });
 
-      if (device_id===cur_id){
-          playSongAtCurr(timestamp);
-          updateTimestamp(timestamp);
-          //firstPlay = 0;
+      if (device_id===cur_id && firstPlay === 1){
+          playSong(timestamp);
+          firstPlay = 0;
       }else if (device_id !== cur_id){
           pauseSong();
-          //firstPlay = 1;
+          firstPlay = 1;
       }
       await new Promise(r => setTimeout(r, 2000));
 }

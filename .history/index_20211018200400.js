@@ -223,9 +223,9 @@ while (true){
           timestamp = doc.data().timestamp;
       });
 
-      if (device_id===cur_id){
+      if (device_id===cur_id && firstPlay === 1){
           playSongAtCurr(timestamp);
-          updateTimestamp(timestamp);
+
           //firstPlay = 0;
       }else if (device_id !== cur_id){
           pauseSong();
