@@ -111,7 +111,7 @@ function prevSong() {
 
 //Play at specific song
 function switchSong(music_id) {
-    songIndex = music_id;
+    songIndex = music_id - 1;
     loadSong(songs[songIndex]);
 }
 
@@ -224,7 +224,7 @@ while (true){
     const querySnapshot = await getDocs(collection(db, "touche_data"));
     var device_id = 0;
     var timestamp = -1;
-    var music_id = 0;
+    var music_id = 1;
     querySnapshot.forEach((doc) => {
         device_id = doc.data().device_id;
         console.log(`$device_id => ${device_id}`);
@@ -234,10 +234,9 @@ while (true){
     });
 
     if (device_id === cur_id && forcePause === 0){
-        if (music_id !== songIndex) {
-            switchSong(music_id);
-            playSong();
-            playing = 1;
+        if (music_id !== songIndex+1) {
+            switchSong();
+            playing == 1;
         } else {
             if (playing === 0) {
                 playSongAtCurr(timestamp);
@@ -248,10 +247,7 @@ while (true){
         }
         updateTimestamp(audio.currentTime);
         //firstPlay = 0;
-    } else if (device_id !== cur_id){
-        if (music_id != songIndex) {
-            switchSong(music_id);
-        }
+    }else if (device_id !== cur_id){
         pauseSong();
         playing = 0;
         //firstPlay = 1;

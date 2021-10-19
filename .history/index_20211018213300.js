@@ -235,9 +235,8 @@ while (true){
 
     if (device_id === cur_id && forcePause === 0){
         if (music_id !== songIndex) {
-            switchSong(music_id);
-            playSong();
-            playing = 1;
+            switchSong();
+            playing == 1;
         } else {
             if (playing === 0) {
                 playSongAtCurr(timestamp);
@@ -248,10 +247,7 @@ while (true){
         }
         updateTimestamp(audio.currentTime);
         //firstPlay = 0;
-    } else if (device_id !== cur_id){
-        if (music_id != songIndex) {
-            switchSong(music_id);
-        }
+    }else if (device_id !== cur_id){
         pauseSong();
         playing = 0;
         //firstPlay = 1;
