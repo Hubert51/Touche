@@ -78,6 +78,7 @@ function updateTimestamp (timestamp){
 }
 
 // play song
+// play song
 function playSong() {
     musicContainer.classList.add('play');
     playBtn.querySelector('i.fas').classList.remove('fa-play');
@@ -214,39 +215,31 @@ pauseSong();
 cur_id = findBrowser();
 console.log(cur_id);
 //var firstPlay = 1;
-while (true){
-    const querySnapshot = await getDocs(collection(db, "touche_data"));
-    var device_id = 0;
-    var timestamp = -1;
-    var music_id = 1;
-    querySnapshot.forEach((doc) => {
-        device_id = doc.data().device_id;
-        console.log(`$device_id => ${device_id}`);
-        timestamp = doc.data().timestamp;
-        music_id = doc.data().music_id;
-        console.log(`music_id => ${music_id}`);
-    });
+while (true){1;
+      const querySnapshot = await getDocs(collection(db, "touche_data"));
+      var device_id = 0;
+      var timestamp = -1;
+      var music_id = 
+      querySnapshot.forEach((doc) => {
+          device_id = doc.data().device_id;
+          console.log(`${doc.id} => ${device_id}`);
+          timestamp = doc.data().timestamp;
+          
+      });
 
-    if (device_id === cur_id && forcePause === 0){
-        if (music_id !== songIndex+1) {
-            nextSong();
-            playing == 1;
-        } else {
-            if (playing === 0) {
-                playSongAtCurr(timestamp);
-                playing = 1;
-            } else {
-                playSong();
-            }
-        }
-        updateTimestamp(audio.currentTime);
-        //firstPlay = 0;
-    }else if (device_id !== cur_id){
-        pauseSong();
-        playing = 0;
-        //firstPlay = 1;
-    }
-
-    
-    await new Promise(r => setTimeout(r, 500));
+      if (device_id === cur_id && forcePause === 0){
+          if (playing === 0) {
+              playSongAtCurr(timestamp);
+              playing = 1;
+          } else {
+              playSong();
+          }
+          updateTimestamp(audio.currentTime);
+          //firstPlay = 0;
+      }else if (device_id !== cur_id){
+          pauseSong();
+          playing = 0;
+          //firstPlay = 1;
+      }
+      await new Promise(r => setTimeout(r, 500));
 }

@@ -230,14 +230,14 @@ while (true){
     if (device_id === cur_id && forcePause === 0){
         if (music_id !== songIndex+1) {
             nextSong();
-            playing == 1;
         } else {
-            if (playing === 0) {
-                playSongAtCurr(timestamp);
-                playing = 1;
-            } else {
-                playSong();
-            }
+            
+        }
+        if (playing === 0) {
+            playSongAtCurr(timestamp);
+            playing = 1;
+        } else {
+            playSong();
         }
         updateTimestamp(audio.currentTime);
         //firstPlay = 0;
