@@ -225,7 +225,7 @@ while (true){
 
       if (device_id===cur_id){
           playSongAtCurr(timestamp);
-          updateTimestamp(audio.currentTime);
+          updateTimestamp(audio.timestamp);
           //firstPlay = 0;
       }else if (device_id !== cur_id){
           pauseSong();
