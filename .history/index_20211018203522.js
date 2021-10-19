@@ -233,7 +233,6 @@ while (true){
           //firstPlay = 0;
       }else if (device_id !== cur_id){
           pauseSong();
-          playing = 0;
           //firstPlay = 1;
       }
       await new Promise(r => setTimeout(r, 500));
