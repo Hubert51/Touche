@@ -231,5 +231,5 @@ while (true){
           pauseSong();
           //firstPlay = 1;
       }
-      await new Promise(r => setTimeout(r, 500));
+      await new Promise(r => setTimeout(r, 2000));
 }
