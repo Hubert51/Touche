@@ -67,6 +67,7 @@ function playSongAtCurr(timestamp) {
         playing = 1;
         audio.currentTime = timestamp;
     }
+    
 
     audio.play();
     //console.log(audio.currentTime);
@@ -93,7 +94,6 @@ function pauseSong() {
     playBtn.querySelector('i.fas').classList.add('fa-play');
     playBtn.querySelector('i.fas').classList.remove('fa-pause');
     audio.pause();
-    playing = 1;
     // if (firstPause === 1) {
     //     updateDoc(doc(db, "touche_data", "lJkUHbTaA7x5zyxnQCap"), {
     //         timestamp: audio.currentTime
@@ -226,11 +226,7 @@ while (true){
       });
 
       if (device_id===cur_id){
-          if (playing == 0) {
-              playSongAtCurr(timestamp);
-          } else {
-              //playSong();
-          }
+          playSongAtCurr(timestamp);
           updateTimestamp(audio.currentTime);
           //firstPlay = 0;
       }else if (device_id !== cur_id){
